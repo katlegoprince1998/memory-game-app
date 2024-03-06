@@ -11,7 +11,9 @@
 }
 
 body{
-    background-image: url("./assets/imgaes/bg/Background.svg");
+    background: radial-gradient(ellipse at 171.6% 173.4%, #FFFFFF 0%, #3E92CE 100%);
+
+
 }
 .memory-text{
     font-family: 'Poppings', sans-serif;
@@ -28,4 +30,135 @@ body{
     line-height: 24pxpx;
     letter-spacing: 0.18;
     margin-top: 20px;
+}
+.board{
+   
+    background: linear-gradient(133.05deg, rgba(255, 255, 255, 0.6) 0.62%, rgba(255, 255, 255, 0.1) 102.4%);
+    border: 1px solid;
+    border-image-source: linear-gradient(132.61deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+ width: 800px;
+height: 510px;
+left: 252px;
+border-radius: 8px;
+border: 1px;
+padding: 10px;
+
+
+}
+
+.player-one{
+height: 240px;
+width: 200px;
+top: 250px;
+padding: 28px;
+border-radius: 8px;
+border: 1px;
+gap: 16px;
+background: linear-gradient(160.65deg, rgba(255, 255, 255, 0.6) 0.74%, rgba(255, 255, 255, 0.1) 102.03%);
+
+border: 1px solid;
+
+border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100.38%);
+
+
+}
+.player-two{
+    height: 240px;
+    width: 200px;
+padding: 28px;
+border-radius: 8px;
+border: 1px;
+gap: 16px;
+background: linear-gradient(160.65deg, rgba(255, 255, 255, 0.6) 0.74%, rgba(255, 255, 255, 0.1) 102.03%);
+border: 1px solid;
+
+border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100.38%);
+
+}
+
+.card{
+    background-image: url("./assets/imgaes/Card_Back.svg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    transform: rotateY(180deg);
+    animation: 2s hideCard linear;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+.card.active,
+.card.correct,
+.card.wrong {
+    background-image: none;
+    pointer-events: none;
+}
+
+
+
+@keyframes hideCard{
+    0%, 70%{
+        transform: rotateY(0);
+    }
+    100%{
+        transform: rotateY(180deg);
+    }
+}
+.card p{
+    transform: scale(0);
+    animation: 2s hideText linear;
+    font: bolder;
+    font-size: 13px;
+    font-family: var(--text-font);
+    font-weight: 800;
+    color: #FFF;
+    
+}
+@keyframes hideText {
+    0%, 70%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(180deg);
+    }
+}
+
+.card.active{
+    transform: rotateY(0);
+    background-color: #3E92CE;
+    color: #FFF;
+    cursor: none;
+}
+.card.active p{
+    transform: scale(1);
+}
+.card.correct {
+    animation: 2s floatUp linear forwards; /* Animation for floating up */
+}
+
+.card.wrong{
+    background-color: red;
+}
+.card.wrong p{
+    color: #fff;
+}
+.card.correct p{
+    color: #fff;
+}
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+        visibility: hidden;
+    }
 }
