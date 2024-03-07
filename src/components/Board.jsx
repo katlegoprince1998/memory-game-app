@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import PlayerOne from './players/PlayerOne';
 import PlayerTwo from './players/PlayerTwo';
 import Heading from './text/index/Heading';
 import ExitBtn from './buttons/index/ExitBtn';
 import Card from './Card';
 import data from '../data';
+import AwardScreen from './AwardScreen';
 
 const Board = ({ player1Name, player2Name }) => {
     const [items, setItems] = useState(data().sort(() => Math.random() - 0.5));
@@ -12,11 +15,20 @@ const Board = ({ player1Name, player2Name }) => {
     const [currentPlayer, setCurrentPlayer] = useState(1); // Start with Player 1
     const [playerOneScore, setPlayerOneScore] = useState(0);
     const [playerTwoScore, setPlayerTwoScore] = useState(0);
+    const [allCardsOpened, setAllCardsOpened] = useState(false);
 
+    useEffect(() => {
+        // Check if all cards are opened
+        const openedCardsCount = items.filter(item => item.stat === 'correct').length;
+        if (openedCardsCount === items.length) {
+            setAllCardsOpened(true);
+        }
+    }, [items]);
     const reshuffle = () => {
         setItems(data().sort(() => Math.random() - 0.5));
         setPrev(-1);
         setCurrentPlayer(1); // Reset to Player 1
+        setAllCardsOpened(false); // Reset all cards opened flag
     };
 
     const switchPlayer = () => {
@@ -66,6 +78,7 @@ const Board = ({ player1Name, player2Name }) => {
         <>
             <Heading />
             <ExitBtn />
+            {!allCardsOpened ? (
             <div className='flex mt-10 justify-evenly'>
                 <PlayerOne score={playerOneScore} currentPlayer={currentPlayer} playerName={player1Name} />
                 <div className='board'>
@@ -75,6 +88,15 @@ const Board = ({ player1Name, player2Name }) => {
                 </div>
                 <PlayerTwo score={playerTwoScore} currentPlayer={currentPlayer} playerName={player2Name} />
             </div>
+             ) : (
+                <AwardScreen
+                    player1Score={playerOneScore}
+                    player2Score={playerTwoScore}
+                    player1Name={player1Name}
+                    player2Name={player2Name}
+                    onPlayAgain={reshuffle} 
+                />
+            )}
         </>
     );
 };

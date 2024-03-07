@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from "./components/Board";
 import Index from "./components/Index";
+import AwardScreen from './components/AwardScreen';
 
 export default function App() {
     const [informationFilled, setInformationFilled] = useState(false);
@@ -27,6 +28,7 @@ export default function App() {
                     player2Name={player2Name}
                 />
             }
+            
         </>
     );
 }

@@ -12,8 +12,10 @@
 
 body{
     background: radial-gradient(ellipse at 171.6% 173.4%, #FFFFFF 0%, #3E92CE 100%);
-
-
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 .memory-text{
     font-family: 'Poppings', sans-serif;
@@ -161,4 +163,12 @@ border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgb
         opacity: 0;
         visibility: hidden;
     }
+}
+.oneDiv{
+    background: linear-gradient(92.15deg, #FFD975 35.31%, #FFFFFF 135.61%);
+
+}
+.twoDiv{
+    background: #FFFFFF;
+
 }
