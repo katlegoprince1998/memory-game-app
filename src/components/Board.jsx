@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+
 
 import PlayerOne from './players/PlayerOne';
 import PlayerTwo from './players/PlayerTwo';
@@ -8,6 +8,7 @@ import ExitBtn from './buttons/index/ExitBtn';
 import Card from './Card';
 import data from '../data';
 import AwardScreen from './AwardScreen';
+import RestartBtn from './buttons/index/RestartBtn';
 
 const Board = ({ player1Name, player2Name }) => {
     const [items, setItems] = useState(data().sort(() => Math.random() - 0.5));
@@ -16,6 +17,7 @@ const Board = ({ player1Name, player2Name }) => {
     const [playerOneScore, setPlayerOneScore] = useState(0);
     const [playerTwoScore, setPlayerTwoScore] = useState(0);
     const [allCardsOpened, setAllCardsOpened] = useState(false);
+    
 
     useEffect(() => {
         // Check if all cards are opened
@@ -24,6 +26,7 @@ const Board = ({ player1Name, player2Name }) => {
             setAllCardsOpened(true);
         }
     }, [items]);
+    
     const reshuffle = () => {
         setItems(data().sort(() => Math.random() - 0.5));
         setPrev(-1);
@@ -49,7 +52,7 @@ const Board = ({ player1Name, player2Name }) => {
             items[prev].stat = "correct";
             setItems([...items]);
             setPrev(-1);
-            incrementScore(); // Increment score if correct pair
+            incrementScore(); 
         } else {
             items[current].stat = "wrong";
             items[prev].stat = "wrong";
@@ -59,7 +62,7 @@ const Board = ({ player1Name, player2Name }) => {
                 items[prev].stat = "";
                 setItems([...items]);
                 setPrev(-1);
-                switchPlayer(); // Switch player after incorrect pairs
+                switchPlayer(); 
             }, 1000);
         }
     };
@@ -75,30 +78,33 @@ const Board = ({ player1Name, player2Name }) => {
     };
 
     return (
-        <>
-            <Heading />
-            <ExitBtn />
+        <div className='mt-20 h-screen'>
             {!allCardsOpened ? (
-            <div className='flex mt-10 justify-evenly'>
-                <PlayerOne score={playerOneScore} currentPlayer={currentPlayer} playerName={player1Name} />
-                <div className='board'>
-                    {items.map((item, index) => (
-                        <Card key={index} item={item} handleClick={handleClick} id={index} />
-                    ))}
+                <div>
+                    <Heading />
+                    <RestartBtn reshuffle={reshuffle}/>
+                    <ExitBtn />
+                    <div className='flex mt-10 justify-evenly'>
+                        <PlayerOne score={playerOneScore} currentPlayer={currentPlayer} playerName={player1Name} />
+                        <div className='board'>
+                            {items.map((item, index) => (
+                                <Card key={index} item={item} handleClick={handleClick} id={index} />
+                            ))}
+                        </div>
+                        <PlayerTwo score={playerTwoScore} currentPlayer={currentPlayer} playerName={player2Name} />
+                    </div>
                 </div>
-                <PlayerTwo score={playerTwoScore} currentPlayer={currentPlayer} playerName={player2Name} />
-            </div>
              ) : (
                 <AwardScreen
                     player1Score={playerOneScore}
                     player2Score={playerTwoScore}
                     player1Name={player1Name}
                     player2Name={player2Name}
-                    onPlayAgain={reshuffle} 
                 />
             )}
-        </>
+        </div>
     );
 };
+
 
 export default Board;

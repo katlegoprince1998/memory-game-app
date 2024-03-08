@@ -53,7 +53,7 @@ padding: 10px;
 }
 
 .player-one{
-height: 240px;
+height: 300px;
 width: 200px;
 top: 250px;
 padding: 28px;
@@ -61,7 +61,9 @@ border-radius: 8px;
 border: 1px;
 gap: 16px;
 background: linear-gradient(160.65deg, rgba(255, 255, 255, 0.6) 0.74%, rgba(255, 255, 255, 0.1) 102.03%);
-
+display: grid;
+justify-content: center;
+align-items: center;
 border: 1px solid;
 
 border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100.38%);
@@ -69,7 +71,7 @@ border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgb
 
 }
 .player-two{
-    height: 240px;
+    height: 300px;
     width: 200px;
 padding: 28px;
 border-radius: 8px;
@@ -77,7 +79,9 @@ border: 1px;
 gap: 16px;
 background: linear-gradient(160.65deg, rgba(255, 255, 255, 0.6) 0.74%, rgba(255, 255, 255, 0.1) 102.03%);
 border: 1px solid;
-
+display: grid;
+justify-content: center;
+align-items: center;
 border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100.38%);
 
 }
@@ -172,3 +176,5 @@ border-image-source: linear-gradient(159.57deg, rgba(255, 255, 255, 0.6) 0%, rgb
     background: #FFFFFF;
 
 }
+
+

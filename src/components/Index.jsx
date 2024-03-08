@@ -18,14 +18,14 @@ const Index = ({ onInformationFilled }) => {
     };
 
     return (
-        <>
+        <div  id="index">
             <Heading />
             <ExitBtn />
             <div>
                 <div className='subheading'>
                     <h1 className='text-white flex justify-center'>Are you ready to play?</h1>
                 </div>
-                <div className='flex w-96 mr-auto ml-80 mt-10'>
+                <div className='flex justify-center  mt-10'>
                     <img src={Player1} alt="Player 1" />
                     <img src={Player2} alt="Player 2" />
                 </div>
@@ -51,7 +51,7 @@ const Index = ({ onInformationFilled }) => {
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 
